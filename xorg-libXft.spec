@@ -1,7 +1,7 @@
 Summary:	X Font Rendering library
 Name:		xorg-libXft
 Version:	2.3.1
-Release:	3
+Release:	4
 License:	MIT
 Group:		X11/Libraries
 Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXft-%{version}.tar.bz2
@@ -32,6 +32,8 @@ use libXft.
 
 %prep
 %setup -qn libXft-%{version}
+
+%{__sed} -i -e 's|<freetype/|<|g' src/xftglyphs.c
 
 %build
 %{__libtoolize}
