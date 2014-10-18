@@ -1,11 +1,11 @@
 Summary:	X Font Rendering library
 Name:		xorg-libXft
-Version:	2.3.1
-Release:	4
+Version:	2.3.2
+Release:	1
 License:	MIT
 Group:		X11/Libraries
 Source0:	http://xorg.freedesktop.org/releases/individual/lib/libXft-%{version}.tar.bz2
-# Source0-md5:	78d64dece560c9e8699199f3faa521c0
+# Source0-md5:	331b3a2a3a1a78b5b44cfbd43f86fcfe
 URL:		http://xorg.freedesktop.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -33,8 +33,6 @@ use libXft.
 %prep
 %setup -qn libXft-%{version}
 
-%{__sed} -i -e 's|<freetype/|<|g' src/xftglyphs.c
-
 %build
 %{__libtoolize}
 %{__aclocal}
@@ -52,6 +50,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	pkgconfigdir=%{_pkgconfigdir}
+
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
